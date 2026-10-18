@@ -1,0 +1,119 @@
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/*Navbar part*/
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 15px 40px;
+  border-bottom: 1px solid #ccc;
+
+}
+.navbar .logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+/*Form part*/
+
+.form {
+  width: 80%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ddd;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form input[type="text"], .form input[type="number"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.form .total {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+}
+.form .sub-inputs {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+} 
+.form .sub-inputs input[type="number"] {
+  flex: 1;
+  min-width: 60px;
+  flex-shrink: 1;
+}
+
+.form button {
+  background-color: #111;
+  color: #fff;
+  padding: 10px 0;
+  border:  none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+ font-family: "Inter", sans-serif;
+
+}
+
+.form .search-btns {
+  display: flex;
+  align-items: center;
+  
+  gap:10px;
+}
+
+.form .search-btns button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  flex: 1;
+}
+
+
+/*Table part #D6EEEE;*/
+
+.table {
+  width: 100%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  text-align: start;
+  margin-top: 40px;
+}
+.table th, .table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: start;
+}
+tr:nth-child(even),tr:nth-child(odd) th {
+  background-color: #eee;
+}
