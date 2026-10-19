@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import Form from "./pages/Form";
 import Info from "./pages/Info";
 
 function App() {
-  const [data, setFormData] = useState({
+  const [formData, setFormData] = useState({
     id: 0,
     name: "",
     price: 0,
@@ -16,57 +16,69 @@ function App() {
     location: "",
     category: "",
   });
-  const [dataArray, setDataArray] = useState([]);
+  const [dataArray, setDataArray] = useState(() => {
+  try {
+    const saved = localStorage.getItem("dataArray");
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+});
+  const [page ,setPage] = useState("form");
   function handleSubmit(e) {
     e.preventDefault();
 
     // Read the form data
-    const form = e.target;
-     const formData = new FormData(form);
-     const id = data.id + 1;
-     const name = formData.get("name");
-     const price = parseFloat(formData.get("price"));
-     const count = parseInt(formData.get("count"));
-     const total = price * count;
-     const benefit = parseFloat(formData.get("benefit"));
-     const contact = parseInt(formData.get("contact"));
-     const location = formData.get("location");
-     const category = formData.get("category");
+    const form = new FormData(e.target);
+      const price = parseFloat(form.get("price"));
+  const count = parseInt(form.get("count"));
+  const total = price * count;
+      const newItem = {
+    id: formData.id + 1,
+    name: form.get("name"),
+    price,
+    count,
+    total,
+    benefit: (total * 30.77) / 100,
+    contact: parseInt(form.get("contact")),
+    location: form.get("location"),
+    category: form.get("category"),
+  };
 
-    setFormData({
-      id: id,
-      name: name,
-      price: price,
-      count: count,
-      total: total,
-      benefit: benefit,
-      contact: contact,
-      location: location,
-      category: category,
-    });
+    setFormData(newItem);
    
-   setDataArray([...dataArray,{...data}]);
-  
-    console.log( dataArray);
+     setDataArray(prev => [...prev, {...newItem, id: prev.length + 1}]);  
+    console.log("Form submitted:", formData);
+   
   }
+    useEffect(() => {
+    console.log(dataArray);
+  }, [dataArray]);
+
+  useEffect(() => {
+  try {
+    localStorage.setItem("dataArray", JSON.stringify(dataArray));
+  } catch (err) {
+    console.error("Could not save to localStorage:", err);
+  }
+}, [dataArray]);
+
   
   return (
     <div className="App">
-      <Navbar />
+      <Navbar page={page} setPage={setPage} />
+      {page === "form" ? 
 
       <form onSubmit={handleSubmit} className="form">
         <input type="text" name="name" id="name" placeholder="name" />
         <div className="sub-inputs">
           <input type="number" name="price" id="price" placeholder="price" />
           <input type="number" name="count" id="count" placeholder="count" />
-          <input
-            type="number"
-            name="benefit"
-            id="benefit"
-            placeholder="benefit"
-          />
+         <small className="benefit" id="benefit">
+            Benefit: ${formData.benefit.toFixed(2)}
+          </small>
           <small className="total" id="total">
-            Total: ${data.total.toFixed(2)}
+            Total: ${formData.total.toFixed(2)}
           </small>
         </div>
          <input
@@ -99,9 +111,10 @@ function App() {
             Search by category
           </button>
         </div>
-      </form>
+      </form> : <Info tableData={dataArray} />}
+      
 
-      <Info tableData={dataArray} />
+   
     </div>
   );
 }
