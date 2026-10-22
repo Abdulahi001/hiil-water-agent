@@ -43,6 +43,7 @@ body {
  font-family: "Inter", sans-serif;
 }
 
+
 /*Form part*/
 
 .form {
@@ -128,3 +129,13 @@ body {
 tr:nth-child(even),tr:nth-child(odd) th {
   background-color: #eee;
 }
+.table .delete-btn {
+  background-color: #ff4d4d;
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+} 
