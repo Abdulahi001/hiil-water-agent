@@ -33,17 +33,17 @@ function App() {
     // Read the form data
     const form = new FormData(e.target);
       const paid = parseFloat(form.get("paid"));
-  const count = parseInt(form.get("count"));
+  const amount = parseInt(form.get("amount"));
   const countWithBottles = parseInt(form.get("countWithBottles"));
-  const total = (130 * count) + (countWithBottles * 550);
+  const total = (130 * amount) + (countWithBottles * 550);
       const newItem = {
     id: formData.id + 1,
     name: form.get("name"),
     paid,
-    count,
+    amount,
     countWithBottles,
     total,
-    benefit: (count * 35) + (countWithBottles * 100),
+    benefit: (amount * 35) + (countWithBottles * 35),
     dept: total - paid,
     contact: parseInt(form.get("contact")),
     location: form.get("location"),
@@ -53,7 +53,8 @@ function App() {
     setFormData(newItem);
    
      setDataArray(prev => [...prev, {...newItem, id: prev.length + 1}]);  
-    console.log("Form submitted:", formData);
+   
+    window.location.reload();
    
   }
 
@@ -75,7 +76,7 @@ function App() {
         <input type="text" name="name" id="name" placeholder="name" outocomplete="off" required={true} />
         <div className="sub-inputs">
      
-          <input type="number" name="count" id="count" placeholder="count" outocomplete="off" required={true} />
+          <input type="number" name="amount" id="amount" placeholder="amount" outocomplete="off" required={true} />
           <input type="number" name="countWithBottles" id="countWithBottles" placeholder="count with bottles" outocomplete="off" required={true}/>
            <input type="number" name="paid" id="paid" placeholder="paid" outocomplete="off" required={true}/>
      {/*    <small className="benefit" id="benefit">

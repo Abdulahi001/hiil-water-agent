@@ -130,7 +130,7 @@ tr:nth-child(even),tr:nth-child(odd) th {
   background-color: #eee;
 }
 .table .delete-btn {
-  background-color: #ff4d4d;
+  background-color: #b80505d3;
   color: #fff;
   padding: 5px 10px;
   border: none;

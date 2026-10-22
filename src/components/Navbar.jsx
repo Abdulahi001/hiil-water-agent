@@ -10,9 +10,9 @@ export default function Navbar({page, setPage})  {
     return (
         <div className='navbar'>
             <img src={Logo} alt="Logo" className="logo" />
-            <h1 className='app-name'>|Fresh Water|</h1>
+            <h1 className='app-name'>|Hiil Water|</h1>
             <button className='toggle-btn' onClick={() => handleClick()}>
-                {page === "form" ? "View Info" : "Edit Form"}
+                {page === "form" ? "View Table" : "Fill Form"}
             </button>
         </div>
     )
