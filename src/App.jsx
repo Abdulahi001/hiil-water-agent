@@ -10,7 +10,7 @@ function App() {
     name: "",
     price: 0,
     count: 0,
-    countWithBottles: 0,
+    amountOfbottles: 0,
     total: 0,
     benefit: 0,
     dept: 0,
@@ -27,6 +27,14 @@ function App() {
   }
 });
   const [page ,setPage] = useState("form");
+    const date = () => {
+  const now = new Date();
+  const dd = String(now.getDate()).padStart(2, '0');
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  const weekday = now.toLocaleString('en-US', { weekday: 'short' });
+
+  return `${dd}-${mm}-${now.getFullYear()} ${weekday}`;
+};
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -34,20 +42,22 @@ function App() {
     const form = new FormData(e.target);
       const paid = parseFloat(form.get("paid"));
   const amount = parseInt(form.get("amount"));
-  const countWithBottles = parseInt(form.get("countWithBottles"));
-  const total = (130 * amount) + (countWithBottles * 550);
+  const amountOfbottles = parseInt(form.get("amountOfbottles"));
+  const total = (130 * amount) + (amountOfbottles * 550);
       const newItem = {
     id: formData.id + 1,
     name: form.get("name"),
     paid,
     amount,
-    countWithBottles,
+    amountOfbottles,
     total,
-    benefit: (amount * 35) + (countWithBottles * 35),
+    benefit: (amount * 35) + (amountOfbottles * 35),
     dept: total - paid,
     contact: parseInt(form.get("contact")),
     location: form.get("location"),
+    date:date(),
     category: form.get("category"),
+
   };
 
     setFormData(newItem);
@@ -77,7 +87,7 @@ function App() {
         <div className="sub-inputs">
      
           <input type="number" name="amount" id="amount" placeholder="amount" outocomplete="off" required={true} />
-          <input type="number" name="countWithBottles" id="countWithBottles" placeholder="count with bottles" outocomplete="off" required={true}/>
+          <input type="number" name="amountOfbottles" id="amountOfbottles" placeholder="amount of bottles" outocomplete="off" required={true}/>
            <input type="number" name="paid" id="paid" placeholder="paid" outocomplete="off" required={true}/>
      {/*    <small className="benefit" id="benefit">
             Benefit: ${formData.benefit.toFixed(2)}
