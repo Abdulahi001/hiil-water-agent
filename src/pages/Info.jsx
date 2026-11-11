@@ -43,12 +43,12 @@ export default function Info(props) {
                 <th>No</th>
                 <th>Name</th>
                 <th>contact</th>
-                <th>Amount</th>
-                <th>with Bottles</th>
+                <th>sold</th>
+                <th>sold Bottles</th>
                  <th>Paid</th>
                 <th>Total</th>
                 <th>Benefit</th>
-                <th>Dept</th>
+                <th>Debt</th>
                 <th>Location</th>
                 <th>Category</th>
                 <th>Date</th>

@@ -33,7 +33,7 @@ function App() {
   const mm = String(now.getMonth() + 1).padStart(2, '0');
   const weekday = now.toLocaleString('en-US', { weekday: 'short' });
 
-  return `${dd}-${mm}-${now.getFullYear()} ${weekday}`;
+  return `${dd}-${mm}-${weekday}`;
 };
   function handleSubmit(e) {
     e.preventDefault();
@@ -43,7 +43,7 @@ function App() {
       const paid = parseFloat(form.get("paid"));
   const amount = parseInt(form.get("amount"));
   const amountOfbottles = parseInt(form.get("amountOfbottles"));
-  const total = (130 * amount) + (amountOfbottles * 550);
+  const total = (130 * amount) + (amountOfbottles * 700);
       const newItem = {
     id: formData.id + 1,
     name: form.get("name"),
@@ -86,8 +86,8 @@ function App() {
         <input type="text" name="name" id="name" placeholder="name" outocomplete="off" required={true} />
         <div className="sub-inputs">
      
-          <input type="number" name="amount" id="amount" placeholder="amount" outocomplete="off" required={true} />
-          <input type="number" name="amountOfbottles" id="amountOfbottles" placeholder="amount of bottles" outocomplete="off" required={true}/>
+          <input type="number" name="amount" id="amount" placeholder="sold" outocomplete="off" required={true} />
+          <input type="number" name="amountOfbottles" id="amountOfbottles" placeholder="sold bottles" outocomplete="off" required={true}/>
            <input type="number" name="paid" id="paid" placeholder="paid" outocomplete="off" required={true}/>
      {/*    <small className="benefit" id="benefit">
             Benefit: ${formData.benefit.toFixed(2)}

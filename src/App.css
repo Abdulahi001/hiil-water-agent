@@ -176,7 +176,8 @@ tr:nth-child(even),tr:nth-child(odd) th {
 @media (max-width: 585px) {
   .navbar {
     width: 100%;
-    padding: 15px 0;
+    padding: 15px 10px;
+    
   }
   .navbar h1 {
     font-size: 18px;
